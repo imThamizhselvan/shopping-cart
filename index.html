@@ -1,0 +1,49 @@
+<html>
+    <body>
+        <label for="ipd">Super Ipad</label><br>
+        <input type="number" id="ipd" name="ipd" value=""><br>
+        <label for="mbp">MacBook Pro</label><br>
+        <input type="number" id="mbp" name="mbp" value=""><br>
+        <label for="atv">Apple TV</label><br>
+        <input type="number" id="atv" name="atv" value=""><br>
+        <label for="vga">VGA adapter</label><br>
+        <input type="number" id="vga" name="vga" value=""><br><br>
+        <input type="submit" onclick="calculate(document.getElementById('ipd').value,document.getElementById('mbp').value, document.getElementById('atv').value,document.getElementById('vga').value)" value="calculate">
+    </body>
+    <script>
+
+        function calculate(ipd,mbp,atv,vga) {
+            var dealOneValue = dealOne(atv);
+            var dealTwoValue = dealTwo(ipd);
+            var dealThreeValue = dealThree(mbp, vga);
+            alert(dealOneValue+dealTwoValue+dealThreeValue.vgaPrice+mbp*1399.99);
+            if (dealThreeValue.freeVGA > 0 ) {
+                alert("Free vga you will receive " + dealThreeValue.freeVGA);
+            }
+        }
+        
+        function dealOne(atv) {
+            var dealApplied = 0;
+            if(atv >= 3) {
+                dealApplied = Math.floor(atv/3);
+            }
+            return dealApplied * 219 + (atv % 3) * 109.50;
+        }
+
+        function dealTwo(ipd) {
+            var ipadPrice = ipd > 4 ? ipd * 499.99 : ipd * 549.99 ;
+            return ipadPrice;
+        }
+
+        function dealThree(mbp, vga) {
+            var freeVGA = 0;
+            var vgaPrice = vga*30 - mbp*30;
+            if (vgaPrice <= 0) {
+                freeVGA = vgaPrice / -30;
+                vgaPrice = 0;
+            }
+            return { vgaPrice, freeVGA };
+        }
+
+    </script>
+</html>
