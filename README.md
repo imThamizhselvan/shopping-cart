@@ -1,5 +1,5 @@
 # shopping-cart
 
-# Please use git clone to clone the repo
+ Please use git clone to clone the repo
 
-# Both js and html in the same page
+ Both js and html in the same page
